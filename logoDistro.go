@@ -1,6 +1,8 @@
 package main
 
-var LogoDistroOS = map[string]string{
+import "runtime"
+
+var MainLogoDistroOS = map[string]string{
 	"linux": `
         .--.            
        |o_o |           
@@ -26,4 +28,20 @@ var LogoDistroOS = map[string]string{
  :          :       
    ` + "`" + `                 
 	`,
+}
+
+// kembikan logo os
+func GetLogoOS() string {
+	var typeOs = runtime.GOOS
+	switch typeOs {
+	case "linux":
+		// di validasi lagi untuk distro , jika tidak ada , maka tapikna logo linux
+		return MainLogoDistroOS["linux"]
+	case "windows":
+		return MainLogoDistroOS["windows"]
+	case "mac":
+		return MainLogoDistroOS["mac"]
+	default:
+		return "NOOOO OS"
+	}
 }

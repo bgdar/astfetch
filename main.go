@@ -5,15 +5,23 @@ import (
 	"os/exec"
 )
 
+// astfetch != asteticek fetch
 func main() {
-
-	fmt.Print("astfetch")
 
 	var ouput, errSysinfo = exec.Command("bash", "./sysinfo.sh").Output()
 	if errSysinfo != nil {
 		panic(errSysinfo)
 	}
 
-	fmt.Print(string(ouput))
+	// var systemType, errSystemType = exec.Command("echo", "$OSTYPE").Output()
+	// if errSystemType != nil {
+	// 	panic(errSystemType)
+	//
+	// }
+
+	// fmt.Print(GetLogoOS())
+	// info system nya
+	// fmt.Print(string(ouput))
+	fmt.Printf("%-30s %-30s", GetLogoOS(), string(ouput))
 
 }
