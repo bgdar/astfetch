@@ -11,20 +11,6 @@ import (
 	"strings"
 )
 
-// type  syinfo struct {
-// 	host  string
-// 	kernel string
-// 	uptime string
-// 	shell string
-// 	Resolution string
-// 	de string
-// 	wm  string
-// 	theme string
-// 	icons string
-// 	gpu string
-// 	cpu string
-// 	memory string
-// }
 
 // / return string : kembalikan nama user saat ini ($USER)
 func GetUser() string {
@@ -87,7 +73,7 @@ func GetUptime() string {
 		println("uptime error :", err)
 		return "none"
 	}
-	return string(out)
+	return strings.TrimSpace(string(out))
 }
 
 // / dapatkan informasi shell yang di gunakan saat ini
@@ -98,9 +84,8 @@ func GetShell() string {
 		comSpec := os.Getenv("ComSpec")
 		if comSpec != "" {
 			idx := strings.LastIndex(comSpec, "\\") // pakai backslash di Windows
-			return comSpec[idx+1:]
+			return string(comSpec[idx+1:])
 		}
-
 		// Jika tidak ada, fallback ke parent process (misal PowerShell)
 		return "powershell.exe" // asumsi umum
 	default:
@@ -108,10 +93,10 @@ func GetShell() string {
 		path := os.Getenv("SHELL")
 		idx := strings.LastIndex(path, "/")
 		if idx >= 0 {
-			return path[idx+1:]
+			return strings.TrimSpace(string(path[idx+1:]))
 		}
 	}
-	return "unknown"
+	return "none"
 
 }
 

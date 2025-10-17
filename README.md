@@ -2,11 +2,15 @@
 
 tools astetik-fetch , informasi system mirip sperti neofetch 
 
-## Parameter `Display`
+
+!["astfetch"]("./img/astfetch.png")
+
+
+### Parameter `Display`
 default **horizontal** 
 - `d` => **down** tampil secara vertical   
 
-## detail info yang akan di tampilkan
+### detail info yang akan di tampilkan
 OS dan Kernel → runtime.GOOS, runtime.GOARCH, gopsutil/host
 Hostname → os.Hostname()
 Uptime → gopsutil/host
