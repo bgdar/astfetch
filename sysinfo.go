@@ -11,13 +11,10 @@ import (
 	"strings"
 )
 
-
 // / return string : kembalikan nama user saat ini ($USER)
 func GetUser() string {
 	return os.Getenv("USER")
-
 }
-
 // / return string  | "none" : hosname
 func GetHostname() string {
 	name, err := os.Hostname()
@@ -242,7 +239,12 @@ func GetGpu() string {
 
 	switch runtime.GOOS {
 	case "linux":
-		out, err = exec.Command("bash", "-c", "lspci | grep -E 'VGA|3D' | head -1 | sed 's/.*controller: //'").Output()
+		// out, err = exec.Command("bash", "-c", "lspci | grep -E 'VGA|3D' | head -1 | sed 's/.*controller: //'").Output()
+		// lebih ringkas dengan  reqex memoto kata yg sekiranya tidak di butuhkan 
+	out , err = exec.Command("bash",
+			"-c",
+			"lspci | grep -E 'VGA|3D' | head -1 | sed -E 's/.*controller: (Intel Corporation|NVIDIA Corporation|Advanced Micro Devices, Inc\\. \\[AMD\\/ATI\\]) //; s/ \\(rev.*//'").Output()
+
 	case "windows":
 		out, err = exec.Command("wmic", "path", "win32_VideoController", "get", "Name").Output()
 	case "darwin":
@@ -284,7 +286,7 @@ func GetMemory()string {
 		}
 	}
 	used := total - available
-	return fmt.Sprintf("Memory: %dMiB / %dMiB (%.1f%%)",
+	return fmt.Sprintf(" %dMiB / %dMiB (%.1f%%)",
 		used/1024, total/1024, float64(used)/float64(total)*100)
 	case "windows" :
 	out, err := exec.Command("wmic", "OS", "get", "TotalVisibleMemorySize,FreePhysicalMemory", "/Value").Output()

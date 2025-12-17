@@ -7,11 +7,9 @@ import (
 	"strings"
 )
 
+
 /// tampilakn dalam bentuk lurus ke samping 
 func displayHorizontal(lines []string, info []string) {
-
-
-
 	maxLines := len(lines)
 	maxInfos := len(info)
 
@@ -33,7 +31,6 @@ func displayHorizontal(lines []string, info []string) {
 		if i < len(lines){
 				logoPart = lines[i]
 			}
-
 		// Tampilkan info jika masih ada
 		if i < maxInfos {
 			infoPart = info[i]
@@ -44,7 +41,6 @@ func displayHorizontal(lines []string, info []string) {
 			fmt.Printf("%-19s  %s\n", logoPart, infoPart)
 		}
 	}
-
 }
 
 /// tampilakn dalam bentuk lurus ke bawah 
@@ -56,7 +52,7 @@ func displayVertical(lines []string, info []string) {
 			fmt.Println(line)
 		}
 	}
-	fmt.Print("")
+	fmt.Println("                                 ")
 	// info
 	for _, in := range info {
 		if !strings.Contains(in,"none"){
@@ -73,14 +69,14 @@ func main() {
 		fmt.Sprint("---------------------------"),
 		fmt.Sprintf("\033[38;5;40m \033[0m %-12s \033[38;5;38m %-20s  \033[0m", "Kernel", GetKernel()),
 		fmt.Sprintf("\033[38;5;38m󱑎 \033[0m %-12s \033[38;5;45m %-20s  \033[0m", "Uptime", GetUptime()),
-		fmt.Sprintf("\033[38;5;38m \033[0m %-12s \033[1;5;40m %-20s  \033[0m", "Shell", GetShell()),
+		fmt.Sprintf("\033[38;5;138m \033[0m %-12s \033[1;5;38m %-20s  \033[0m", "Shell", GetShell()),
 		fmt.Sprintf("\033[38;5;56m \033[0m %-12s \033[38;5;277m %-20s  \033[0m", "Resolution", GetResolution()),
-		fmt.Sprintf("\033[38;5;38m󰨡 \033[0m  %-12s \033[38;5;226m %-20s  \033[0m", "Window", GetWindows()),
-		fmt.Sprintf("\033[38;5;38m \033[0m  %-12s \033[38;5;201m %-20s \033[0m", "Theme", GetTheme()),
-		fmt.Sprintf("\033[1;245m \033[0m  %-12s \033[38;5;15m %-20s  \033[0m", "Terminal", GetTerminal()),
-		fmt.Sprintf("\033[38;5;38m \033[0m  %-12s \033[1;5;96m %-20s   \033[0m", "CPU", GetCpu()),
-		fmt.Sprintf("\033[38;5;196m \033[0m  %-12s \033[1;5;91m %-20s   \033[0m", "GPU", GetGpu()),
-		fmt.Sprintf("\033[1;5;221m \033[0m  %-12s \033[1;5;166m %-20s  \033[0m", "memory", GetMemory()),
+		fmt.Sprintf("\033[38;5;38m󰨡 \033[0m %-12s \033[38;5;226m %-20s  \033[0m", "Desktop", GetWindows()),
+		fmt.Sprintf("\033[38;5;101m \033[0m %-12s \033[38;5;201m %-20s \033[0m", "Theme", GetTheme()),
+		fmt.Sprintf("\033[1;245m \033[0m %-12s \033[38;5;15m %-20s  \033[0m", "Terminal", GetTerminal()),
+		fmt.Sprintf("\033[38;5;38m \033[0m %-12s \033[1;5;96m %-20s   \033[0m", "CPU", GetCpu()),
+		fmt.Sprintf("\033[38;5;196m \033[0m %-12s \033[1;5;91m %-20s   \033[0m", "GPU", GetGpu()),
+		fmt.Sprintf("\033[1;5;221m \033[0m %-12s \033[1;5;166m %-20s  \033[0m", "memory", GetMemory()),
 		}
 	
 	// ambil sesui os yg jalan
