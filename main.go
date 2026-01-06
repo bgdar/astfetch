@@ -5,22 +5,23 @@ import (
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/bgdar/astfetch/ansi"
 )
 
-
-/// tampilakn dalam bentuk lurus ke samping 
+// / tampilakn dalam bentuk lurus ke samping
 func displayHorizontal(lines []string, info []string) {
 	maxLines := len(lines)
 	maxInfos := len(info)
 
-	// cari baris yang paling besar 
+	// cari baris yang paling besar
 	if maxInfos > maxLines {
 		maxLines = maxInfos
 	}
 
 	fmt.Print("")
 
-	// lop untuk menampilkan 
+	// lop untuk menampilkan
 	// jika maish ada logo atau info maka tampilkan jika tidak kosongkan ("")
 	// tujuanya untuk menyamakan
 	for i := 0; i < maxLines; i++ {
@@ -28,9 +29,9 @@ func displayHorizontal(lines []string, info []string) {
 		infoPart := ""
 
 		// Tampilkan row logo hanya jika masih dalam range lines
-		if i < len(lines){
-				logoPart = lines[i]
-			}
+		if i < len(lines) {
+			logoPart = lines[i]
+		}
 		// Tampilkan info jika masih ada
 		if i < maxInfos {
 			infoPart = info[i]
@@ -43,7 +44,7 @@ func displayHorizontal(lines []string, info []string) {
 	}
 }
 
-/// tampilakn dalam bentuk lurus ke bawah 
+// / tampilakn dalam bentuk lurus ke bawah
 func displayVertical(lines []string, info []string) {
 	fmt.Print("")
 	// logo
@@ -55,7 +56,7 @@ func displayVertical(lines []string, info []string) {
 	fmt.Println("                                 ")
 	// info
 	for _, in := range info {
-		if !strings.Contains(in,"none"){
+		if !strings.Contains(in, "none") {
 			fmt.Println(in)
 		}
 	}
@@ -65,20 +66,20 @@ func main() {
 
 	// simpan array string untuk di tampilkan
 	info := []string{
-		fmt.Sprintf("\033[38;5;47;5;255m%s\033[0m on %s", GetUser(), GetOSName()),
-		fmt.Sprint("---------------------------"),
-		fmt.Sprintf("\033[38;5;40m \033[0m %-12s \033[38;5;38m %-20s  \033[0m", "Kernel", GetKernel()),
-		fmt.Sprintf("\033[38;5;38m󱑎 \033[0m %-12s \033[38;5;45m %-20s  \033[0m", "Uptime", GetUptime()),
-		fmt.Sprintf("\033[38;5;138m \033[0m %-12s \033[1;5;38m %-20s  \033[0m", "Shell", GetShell()),
-		fmt.Sprintf("\033[38;5;56m \033[0m %-12s \033[38;5;277m %-20s  \033[0m", "Resolution", GetResolution()),
-		fmt.Sprintf("\033[38;5;38m󰨡 \033[0m %-12s \033[38;5;226m %-20s  \033[0m", "Desktop", GetWindows()),
-		fmt.Sprintf("\033[38;5;101m \033[0m %-12s \033[38;5;201m %-20s \033[0m", "Theme", GetTheme()),
-		fmt.Sprintf("\033[1;245m \033[0m %-12s \033[38;5;15m %-20s  \033[0m", "Terminal", GetTerminal()),
-		fmt.Sprintf("\033[38;5;38m \033[0m %-12s \033[1;5;96m %-20s   \033[0m", "CPU", GetCpu()),
-		fmt.Sprintf("\033[38;5;196m \033[0m %-12s \033[1;5;91m %-20s   \033[0m", "GPU", GetGpu()),
-		fmt.Sprintf("\033[1;5;221m \033[0m %-12s \033[1;5;166m %-20s  \033[0m", "memory", GetMemory()),
-		}
-	
+		fmt.Sprintf(ansi.FgGreen+"%s"+ansi.Reset+ansi.TbTurquoise+" on "+ansi.Reset+"%s", GetUser(), GetOSName()),
+		fmt.Sprint(ansi.TbWhite + "---------------------------" + ansi.Reset),
+		fmt.Sprintf("  %-12s "+ansi.FgRed+" %-20s  "+ansi.Reset, "Kernel", GetKernel()),
+		fmt.Sprintf(ansi.TbYellow+"󱑎 "+ansi.Reset+" %-12s "+ansi.Reset+ansi.FgGreen+" %-20s  "+ansi.Reset, "Uptime", GetUptime()),
+		fmt.Sprintf(ansi.TbGray+" "+ansi.Reset+" %-12s "+ansi.FgGray+" %-20s  "+ansi.Reset, "Shell", GetShell()),
+		fmt.Sprintf(ansi.TbTeal+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s  "+ansi.Reset, "Resolution", GetResolution()),
+		fmt.Sprintf(ansi.TbMagenta+"󰨡 "+ansi.Reset+" %-12s "+ansi.FgBlue+" %-20s  "+ansi.Reset, "Desktop", GetWindows()),
+		fmt.Sprintf(ansi.TbCyan+" "+ansi.Reset+" %-12s "+ansi.FgPurple+" %-20s "+ansi.Reset, "Theme", GetTheme()),
+		fmt.Sprintf(ansi.TbGray+" "+ansi.Reset+" %-12s "+ansi.FgDarkGray+" %-20s  "+ansi.Reset, "Terminal", GetTerminal()),
+		fmt.Sprintf(ansi.TbBlue+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s   "+ansi.Reset, "CPU", GetCpu()),
+		fmt.Sprintf(ansi.TbRed+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s   "+ansi.Reset, "GPU", GetGpu()),
+		fmt.Sprintf(ansi.TbBrown+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s  "+ansi.Reset, "memory", GetMemory()),
+	}
+
 	// ambil sesui os yg jalan
 	lines := MainLogoDistroOS[runtime.GOOS]
 	// ambil argumets setelah nama file atau nama entri program jika di build

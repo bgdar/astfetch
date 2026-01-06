@@ -1,16 +1,17 @@
 # astfetch
 
-tools astetik-fetch , informasi system mirip sperti neofetch 
-
+tools astetik-fetch , informasi system mirip sperti neofetch
 
 !["astfetch"]("./img/astfetch.png")
 
-
 ### Parameter `Display`
-default **horizontal** 
-- `d` => **down** tampil secara vertical   
+
+default **horizontal**
+
+- `d` => **down** tampil secara vertical
 
 ### detail info yang akan di tampilkan
+
 OS dan Kernel → runtime.GOOS, runtime.GOARCH, gopsutil/host
 Hostname → os.Hostname()
 Uptime → gopsutil/host
@@ -24,6 +25,7 @@ Resolution (kalau di Linux, bisa panggil xrandr atau fbset)
 Theme / WM / DE (biasanya lewat environment variable, misal
 
 ### other
+
 > sysinfo.sh => tidak saya gunakan , tapi full golang
 > jika ingin gunakan cukup panggil
 
