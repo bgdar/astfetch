@@ -72,7 +72,7 @@ func main() {
 		fmt.Sprintf(ansi.TbYellow+"󱑎 "+ansi.Reset+" %-12s "+ansi.Reset+ansi.FgGreen+" %-20s  "+ansi.Reset, "Uptime", GetUptime()),
 		fmt.Sprintf(ansi.TbGray+" "+ansi.Reset+" %-12s "+ansi.FgGray+" %-20s  "+ansi.Reset, "Shell", GetShell()),
 		fmt.Sprintf(ansi.TbTeal+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s  "+ansi.Reset, "Resolution", GetResolution()),
-		fmt.Sprintf(ansi.TbMagenta+"󰨡 "+ansi.Reset+" %-12s "+ansi.FgBlue+" %-20s  "+ansi.Reset, "Desktop", GetWindows()),
+		fmt.Sprintf(ansi.TbMagenta+"󰨡 "+ansi.Reset+" %-12s "+ansi.FgBlue+" %-20s  "+ansi.Reset, "DE/WM", GetWindows()),
 		fmt.Sprintf(ansi.TbCyan+" "+ansi.Reset+" %-12s "+ansi.FgPurple+" %-20s "+ansi.Reset, "Theme", GetTheme()),
 		fmt.Sprintf(ansi.TbGray+" "+ansi.Reset+" %-12s "+ansi.FgDarkGray+" %-20s  "+ansi.Reset, "Terminal", GetTerminal()),
 		fmt.Sprintf(ansi.TbBlue+" "+ansi.Reset+" %-12s "+ansi.FgWhite+" %-20s   "+ansi.Reset, "CPU", GetCpu()),
